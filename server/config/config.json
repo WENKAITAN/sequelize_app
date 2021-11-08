@@ -1,0 +1,23 @@
+{
+  "development": {
+    "username": "ctp_user",
+    "password": "ctp_pass",
+    "database": "sequelize_db",
+    "host": "127.0.0.1",
+    "dialect": "postgres"
+  },
+  "test": {
+    "username": "ctp_user",
+    "password": "ctp_pass",
+    "database": "sequelize_db",
+    "host": "127.0.0.1",
+    "dialect": "postgres"
+  },
+  "production": {
+    "username": "ctp_user",
+    "password": "ctp_pass",
+    "database": "sequelize_db",
+    "host": "127.0.0.1",
+    "dialect": "postgres"
+  }
+}
