@@ -11,14 +11,32 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       // define association here
-    }
-    toJSON(){
-      return {...this.get(), id: undefined}
+      Order.belongsTo(models.User, {foreignKey: "user_id", targetKey: "user_id", as: "User"});
+      Order.belongsTo(models.Product, {foreignKey: "product_id", targetKey: "product_id", as: "Product"})
     }
   };
   Order.init({
-    product_id: DataTypes.STRING,
-    user_id: DataTypes.STRING
+    order_id: {
+      type: DataTypes.UUID,
+      defaultValue: DataTypes.UUID,
+      primaryKey: true
+    },
+    product_id: {
+      type: DataTypes.UUID,
+      primaryKey: false,
+      references: {
+        model: 'products',
+        key: 'pdocut_id'
+      },
+    },
+    user_id: {
+      type: DataTypes.UUID,
+      primaryKey: false,
+      references: {
+        model: 'users',
+        key: 'user_id'
+      },
+    }
   }, {
     sequelize,
     modelName: 'Order',

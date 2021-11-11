@@ -11,15 +11,17 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       // define association here
+      Product.belongsToMany(models.User, {as: "UsersForProducts", through: models.Order, foreignKey: "product_id"})
     }
-    toJSON(){
-      return {...this.get(), id: undefined}
-    }
+    // toJSON(){
+    //   return {...this.get(), id: undefined}
+    // }
   };
   Product.init({
-    uuid: {
+    produt_id: {
       type: DataTypes.UUID,
-      defaultValue: DataTypes.UUIDV4
+      defaultValue: DataTypes.UUIDV4,
+      primaryKey: true
     },
     name: {
       type: DataTypes.STRING,
@@ -42,12 +44,17 @@ module.exports = (sequelize, DataTypes) => {
       allowNull: false
     },
     description: {
-      type: DataTypes.STRING,
+      type: DataTypes.ARRAY(DataTypes.TEXT),//array type?
       allowNull: true
     },
     sizeChart: {
       type: DataTypes.STRING,
       allowNull: true
+    },
+    sizeAble: {
+      type: DataTypes.BOOLEAN,
+      allowNull: false,
+      defaultValue: true
     }
 
 

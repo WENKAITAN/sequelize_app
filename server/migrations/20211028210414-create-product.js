@@ -1,16 +1,11 @@
 'use strict';
 module.exports = {
   up: async (queryInterface, DataTypes) => {
-    await queryInterface.createTable('products', {
-      id: {
-        allowNull: false,
-        autoIncrement: true,
-        primaryKey: true,
-        type: DataTypes.INTEGER
-      },
-      uuid: {
+    await queryInterface.createTable('product', {
+      product_id: {
         type: DataTypes.UUID,
-        defaultValue: DataTypes.UUIDV4,
+        defaultValue: DataTypes.UUID,
+        primaryKey: true,
         allowNull: false
       },
       name: {
@@ -34,12 +29,17 @@ module.exports = {
         allowNull: false
       },
       description: {
-        type: DataTypes.STRING,
+        type: DataTypes.ARRAY(DataTypes.TEXT),
         allowNull: true
       },
       sizeChart: {
         type: DataTypes.STRING,
         allowNull: true
+      },
+      sizeAble: {
+        type: DataTypes.BOOLEAN,
+        allowNull: false,
+        defaultValue: true
       },
       createdAt: {
         allowNull: false,
